@@ -10,7 +10,7 @@ COPY npm-shrinkwrap.json package.json $APP_HOME/
 
 WORKDIR $APP_HOME
 
-RUN npm install --no-optional && npm cache clean
+RUN npm install
 
 COPY . $APP_HOME
 

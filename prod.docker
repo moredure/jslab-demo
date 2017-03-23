@@ -14,7 +14,7 @@ COPY npm-shrinkwrap.json package.json $APP_HOME/
 
 RUN apk add --no-cache --virtual .bcrypt-deps \
   g++ python make &&\
-  npm install --no-optional --production &&\
+  npm install --no-optional &&\
   npm cache clean &&\
   chown -R node:node $APP_HOME &&\
   apk del .bcrypt-deps

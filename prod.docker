@@ -6,7 +6,7 @@ ENV APP_HOME /app
 
 ENV NODE_ENV production
 
-RUN mkdir $APP_HOME
+RUN mkdir -p $APP_HOME/src
 
 WORKDIR $APP_HOME
 

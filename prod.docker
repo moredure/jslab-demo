@@ -12,16 +12,11 @@ WORKDIR $APP_HOME
 
 COPY npm-shrinkwrap.json package.json $APP_HOME/
 
-RUN apk add --no-cache --virtual .bcrypt-deps \
-  g++ python make &&\
+RUN apk add --no-cache g++ python make &&\
   npm install --no-optional --production &&\
-  npm cache clean &&\
-  chown -R node:node $APP_HOME &&\
-  apk del .bcrypt-deps
+  npm cache clean
 
 COPY ./src $APP_HOME/src
-
-USER node
 
 EXPOSE 3000
 

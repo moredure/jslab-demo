@@ -1,0 +1,19 @@
+FROM node:7.7.2
+
+MAINTAINER Mikhail Faraponov
+
+ENV APP_HOME /app
+
+RUN mkdir $APP_HOME
+
+COPY npm-shrinkwrap.json package.json $APP_HOME/
+
+WORKDIR $APP_HOME
+
+RUN npm install --no-optional && npm cache clean
+
+COPY . $APP_HOME
+
+EXPOSE 3000
+
+ENTRYPOINT ["npm", "run", "watch"]

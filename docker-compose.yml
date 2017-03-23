@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: &web_build
+      context: .
+      dockerfile: dev.docker
+    volumes: &web_volumes
+      - ./src:/app/src:ro
+      - ./test:/app/test:ro
+    ports:
+      - localhost:80:3000
+  webtest:
+    build:
+      <<: *web_build
+    entrypoint: npm test
+    volumes: *web_volumes
+    environment:
+      - NODE_ENV=testing
